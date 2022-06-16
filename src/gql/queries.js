@@ -1,30 +1,46 @@
 import { gql } from "@apollo/client";
 
 export const GET_BUILDINGS = gql`
-  {
-    MeetingRooms {
+  query Buildings {
+    Buildings {
+      id
       name
-      floor
-      building {
+    }
+  }
+`;
+
+export const GET_BUILDING_DATA = gql`
+  query Buildings($buildingId: Int!) {
+    Building(id: $buildingId) {
+      name
+      id
+      meetingRooms {
+        id
         name
-      }
-      meetings {
-        title
+        meetings {
+          title
+          date
+          startTime
+          endTime
+        }
       }
     }
   }
 `;
 
 export const GET_MEETING_ROOMS = gql`
-  {
-    MeetingRooms {
+  query Buildings($buildingId: Int!) {
+    Building(id: $buildingId) {
       name
-      floor
-      building {
+      meetingRooms {
+        id
+        floor
         name
-      }
-      meetings {
-        title
+        meetings {
+          date
+          startTime
+          endTime
+        }
       }
     }
   }

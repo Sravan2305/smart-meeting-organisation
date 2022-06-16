@@ -1,14 +1,21 @@
 import { gql } from "@apollo/client";
 
-export const ADD_MEETING = () => gql`
-  mutation {
+export const ADD_MEETING = gql`
+  mutation AddMeeting(
+    $id: Int!
+    $title: String!
+    $date: String!
+    $start: String!
+    $end: String!
+    $roomId: Int!
+  ) {
     Meeting(
-      id: 1
-      title: "Booked3"
-      date: "13/02/2019"
-      startTime: "21:00"
-      endTime: "22:00"
-      meetingRoomId: 1
+      id: $id
+      title: $title
+      date: $date
+      startTime: $start
+      endTime: $end
+      meetingRoomId: $roomId
     ) {
       id
       title
